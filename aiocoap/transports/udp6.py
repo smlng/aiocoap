@@ -33,7 +33,7 @@ class UDP6EndpointAddress:
     # interface work in progress. chances are those should be immutable or at
     # least hashable, as they'll be frequently used as dict keys.
     def __init__(self, sockaddr, *, pktinfo=None):
-        self.sockaddr = sockaddr
+        self.sockaddr = (sockaddr[0].partition('%')[0], sockaddr[1], sockaddr[2], sockaddr[3])
         self.pktinfo = pktinfo
 
     def __hash__(self):
